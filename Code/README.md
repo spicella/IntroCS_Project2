@@ -1,7 +1,7 @@
 ## Here notes, suggestions and goals for each step of the code can be presented:
 
 ### General:
-  The two codes (Part1, Part2) will be used only up to the generation of the adjacency matrices for the two scenarios (real network adn WS network) to study. Another code (Analysis.py) will be used for the analysis of these networks starting from the output data of the adjacency matrices produced in Part1,2.
+  The two codes (Part1, Part2) will be used only up to the generation of the adjacency matrices for the two scenarios (real network adn WS network) to study. Another code (Analysis.py) will be used for the analysis of these networks starting from the output data of the adjacency matrices produced in Part1,2, mean shortest path length also!.
   
   There is the possibility (only for part 2) to run several times the code with fixed parameters and extract network features (clustering coefficients, average distance..) from statistical significative samples.
   
