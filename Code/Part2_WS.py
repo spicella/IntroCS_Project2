@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[14]:
-
-
 import pandas as pd
 import numpy as np
 import math
@@ -12,14 +6,6 @@ import matplotlib.pyplot as plt
 plt.style.use("seaborn-darkgrid")
 import os
 
-
-# In[ ]:
-
-
-
-
-
-# In[2]:
 
 
 def coordinates_on_circle(n):
@@ -34,7 +20,6 @@ def coordinates_on_circle(n):
     return x,y
 
 
-# In[3]:
 
 
 def create_starting_graph(n,r):
@@ -67,13 +52,6 @@ def create_starting_graph(n,r):
     return adj_mat_df
 
 
-# In[ ]:
-
-
-
-
-
-# In[43]:
 
 
 def create_strogatz(n, r ,p, place_labels=False ):
@@ -133,26 +111,46 @@ def create_strogatz(n, r ,p, place_labels=False ):
     adj_mat.to_csv(path+results_dir+name_csv,header=False, index=False)
     plt.savefig(path+results_dir+name_plot,dpi=200)
     plt.show()
+        
+        
     #rewiring! (anticlockwise, for sake of indices)
     
     for i in range(0,n):
-        edges_list = adj_mat[adj_mat.iloc[i] == True].index.tolist()
-        candidates = set(range(n)) #create set of all values on row
-        candidates = list(candidates - set(edges_list)) #subtract the already connected vertices
-        candidates.remove(i) #remove self loop
-        for j in range(i+1,n):
-            if(random.random()<p):
-                chosen = random.choice(candidates) #chose a random element from candidate
-                adj_mat.iloc[i][j]=False  #turn to off old edge
-                adj_mat.iloc[i][chosen]=True   #turn on new edge  (rewire)
-                candidates.remove(chosen) #take out rewired vertex from list
-                #is this correct? Once an edge has been removed, it comes back into the candidates list?..
-                candidates.append(j)
+        #print("working on row # %d"%(i))
+        for j in range(0,2*r):  #for each link to vertex i
+            if (random.random()<p): #attempt a rewire
+                #performing the rewire
+                #    - Choose which of the connected edge to rewire->deleated_edge
+                #    - Choose were to rewire it among the available positions->candidates
+                #    - Perform the connection/deleate old connection/update mirror adjmat
                 
-                #for symmetry of connections, mirror the connections 
-                adj_mat.iloc[j][i]=False  #turn to off old edge
-                adj_mat.iloc[chosen][i]=True   #turn on new edge  (rewire)
+                #choose which edge to remove:
+                edge_list = list(adj_mat[adj_mat.iloc[i] == True].index.tolist())
+                deleated_edge = random.choice(edge_list)
+                
+                #chose available position:
+                candidates = list(adj_mat[adj_mat.iloc[i] == False].index.tolist())
+                candidates.remove(i) #take out self loop
+                new_edge = random.choice(candidates)
 
+                #print("candidates list = ",candidates)
+                #print("new edge chosen = ",new_edge)
+                
+                #create new wire
+                adj_mat.iloc[i][new_edge]=True
+                adj_mat.iloc[new_edge][i]=True
+
+                #deleate old wire
+                adj_mat.iloc[i][deleated_edge]=False
+                adj_mat.iloc[deleated_edge][i]=False
+                
+
+                
+    #Copy below diagonal:
+    #for i in range(0,n):
+    #    for j in range(0,i):
+     #       adj_mat.iloc[j][i]=adj_mat.iloc[i][j]
+    
     
     #Plot rewired
     
@@ -189,20 +187,8 @@ def create_strogatz(n, r ,p, place_labels=False ):
     plt.show()
 
 
-# In[44]:
 
 
-create_strogatz(20,2,.5)
-
-
-# In[ ]:
-
-
-
-
-
-# In[21]:
-
-
+create_strogatz(500,5,.4)
 
 
