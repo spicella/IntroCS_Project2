@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
+
 import pandas as pd
 import numpy as np
 import math
@@ -6,6 +12,8 @@ import matplotlib.pyplot as plt
 plt.style.use("seaborn-darkgrid")
 import os
 
+
+# In[2]:
 
 
 def coordinates_on_circle(n):
@@ -20,6 +28,7 @@ def coordinates_on_circle(n):
     return x,y
 
 
+# In[3]:
 
 
 def create_starting_graph(n,r):
@@ -52,6 +61,7 @@ def create_starting_graph(n,r):
     return adj_mat_df
 
 
+# In[273]:
 
 
 def create_strogatz(n, r ,p, place_labels=False ):
@@ -67,10 +77,10 @@ def create_strogatz(n, r ,p, place_labels=False ):
     else:
         print ("Successfully created the directory %s " % results_dir)
     #names for file paths
-    name_plot = "/plot_n%d_r%d_p%d.png" %(n,r,p)
-    name_csv = "/data_n%d_r%d_p%d.csv" %(n,r,p)
-    name_plot_rewired = "/plot_rewired_n%d_r%d_p%d.png" %(n,r,p)
-    name_csv_rewired = "/data_rewired_n%d_r%d_p%d.csv" %(n,r,p)
+    name_plot = "/plot_n%d_r%d_p%.3f.png" %(n,r,p)
+    name_csv = "/data_n%d_r%d_p%.3f.csv" %(n,r,p)
+    name_plot_rewired = "/plot_rewired_n%d_r%d_p%.3f.png" %(n,r,p)
+    name_csv_rewired = "/data_rewired_n%d_r%d_p%.3f.csv" %(n,r,p)
     
     
     #check for errors
@@ -187,8 +197,14 @@ def create_strogatz(n, r ,p, place_labels=False ):
     plt.show()
 
 
+# In[276]:
 
 
-create_strogatz(500,5,.4)
+create_strogatz(100,5,1)
+
+
+# In[ ]:
+
+
 
 
