@@ -61,7 +61,7 @@ def create_starting_graph(n,r):
     return adj_mat_df
 
 
-# In[273]:
+# In[4]:
 
 
 def create_strogatz(n, r ,p, place_labels=False ):
@@ -121,22 +121,27 @@ def create_strogatz(n, r ,p, place_labels=False ):
     adj_mat.to_csv(path+results_dir+name_csv,header=False, index=False)
     plt.savefig(path+results_dir+name_plot,dpi=200)
     plt.show()
-        
+    
+    #print("PRE REWIRING:",sum(adj_mat))
         
     #rewiring! (anticlockwise, for sake of indices)
     
     for i in range(0,n):
         #print("working on row # %d"%(i))
-        for j in range(0,2*r):  #for each link to vertex i
+        #edge_list = list(adj_mat[adj_mat.iloc[i] == True].index.tolist())
+        #edge_list = [k for k in edge_list if k > i]
+        for j in range(0,r):  #for each link to vertex i
+
             if (random.random()<p): #attempt a rewire
                 #performing the rewire
                 #    - Choose which of the connected edge to rewire->deleated_edge
                 #    - Choose were to rewire it among the available positions->candidates
                 #    - Perform the connection/deleate old connection/update mirror adjmat
-                
-                #choose which edge to remove:
-                edge_list = list(adj_mat[adj_mat.iloc[i] == True].index.tolist())
-                deleated_edge = random.choice(edge_list)
+
+                #choose which edge to remove: [+periodic boundary conditions]
+                deleated_edge = i+1+j
+                if deleated_edge>n-1:
+                    deleated_edge = deleated_edge-n
                 
                 #chose available position:
                 candidates = list(adj_mat[adj_mat.iloc[i] == False].index.tolist())
@@ -155,12 +160,9 @@ def create_strogatz(n, r ,p, place_labels=False ):
                 adj_mat.iloc[deleated_edge][i]=False
                 
 
-                
-    #Copy below diagonal:
-    #for i in range(0,n):
-    #    for j in range(0,i):
-     #       adj_mat.iloc[j][i]=adj_mat.iloc[i][j]
-    
+
+    #print("AFTER REWIRING:",sum(adj_mat))
+
     
     #Plot rewired
     
@@ -195,16 +197,12 @@ def create_strogatz(n, r ,p, place_labels=False ):
     adj_mat.to_csv(path+results_dir+name_csv_rewired,header=False, index=False)
     plt.savefig(path+results_dir+name_plot_rewired,dpi=200)
     plt.show()
+    return adj_mat
 
 
-# In[276]:
+# In[82]:
 
 
-create_strogatz(100,5,1)
-
-
-# In[ ]:
-
-
-
+n,r,p=50,5,.3
+adj_mat = create_strogatz(n,r,p)
 
