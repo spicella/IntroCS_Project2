@@ -5,8 +5,8 @@ Here the material produced, both for theoretical part and simulation code exerci
 
 This page will eventually be used to keep track of the evolution the project.
 
-Francesca Cavallini, Paul Mulholland, Janneke Hutter, Rodolfo Subert, Anouar Moustaj, Sergio Picella
+Authors: Francesca Cavallini, Paul Mulholland, Janneke Hutter, Rodolfo Subert, Anouar Moustaj, Sergio Picella
 
 
 
-Overleaf: https://www.overleaf.com/1265291733qfjjbxqhhtjt
+Overleaf link for editing: https://www.overleaf.com/1265291733qfjjbxqhhtjt
