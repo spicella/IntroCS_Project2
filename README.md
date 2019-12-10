@@ -3,7 +3,7 @@ In the present project it will be analyzed the behavior of real networks and of 
 
 Here the material produced, both for theoretical part and simulation code exercise will be reported.
 
-This page will eventually be used to keep track of the evolution the project.
+This page will be used to keep track of the evolution the project.
 
 Authors: Francesca Cavallini, Paul Mulholland, Janneke Hutter, Rodolfo Subert, Anouar Moustaj, Sergio Picella
 
