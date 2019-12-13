@@ -10,8 +10,11 @@ import time
 
 
 file_path = "/Users/sergiopicella/Downloads/ca-GrQc.txt"
-df_a = pd.read_csv(file_path,delimiter="\t",header=None)
-df_a = df_a.rename(columns={0:"from", 1:"to"})
+
+df_a = pd.read_csv(file_path,delimiter="\t",header=None) #use delimiter = "\t" for Enron dataset 
+                                                         #use delimiter = "," for Git dataset
+df_a = df_a.rename(columns={0:"from", 1:"to"}).          
+
 
 df_a_sorted = df_a.sort_values(by=["from"])
 df_a.shape
